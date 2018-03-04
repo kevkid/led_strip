@@ -22,6 +22,7 @@ I followed this [guide](https://tutorials-raspberrypi.com/how-to-control-a-raspb
 sudo apt-get update
 sudo apt-get install python-pip -y
 sudo pip install adafruit-ws2801
+sudo pip install flask
 sudo apt-get install python-numpy python-scipy python-pyaudio
 ```
 
