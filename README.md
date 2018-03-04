@@ -6,7 +6,7 @@ Here is an interface for controlling the WS2801 led strips with a raspberry pi. 
 
 I am using several other projects and have made modifications to those projects.
 
-I am using Twitter [Bootstrap](https://getbootstrap.com/), [jQuery](https://jquery.com/), [audio-reactive-led-strip](https://github.com/scottlawsonbc/audio-reactive-led-strip), and [How to connect and control a Raspberry Pi WS2801 RGB LED Strip](https://tutorials-raspberrypi.com/how-to-control-a-raspberry-pi-ws2801-rgb-led-strip/)
+I am using Twitter [Bootstrap](https://getbootstrap.com/), [jQuery](https://jquery.com/), [audio-reactive-led-strip](https://github.com/scottlawsonbc/audio-reactive-led-strip), [huebee](http://huebee.buzz/), and [How to connect and control a Raspberry Pi WS2801 RGB LED Strip](https://tutorials-raspberrypi.com/how-to-control-a-raspberry-pi-ws2801-rgb-led-strip/)
 
 ## Requirements:
 1. Raspberry Pi
