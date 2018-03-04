@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<h1 class="display-1">LED Control</h1>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='huebee.pkgd.min.js')}}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+ <link rel="stylesheet" href="{{ url_for('static', filename='huebee.css')}}" type="text/css" />
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
+.huebee__cursor {
+  width: 50pt;
+  height: 50pt;
+}
+
+</style>
+ <script type="text/javascript" charset="utf-8">
+ function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+ colorVal = 0;
+  $(document).ready(function() {
+	
+       
+    var elem = $('.color-input')[0];
+	var hueb = new Huebee( elem, {
+	// options
+	shades: 7,
+	saturations: 1,
+	notation: 'hex',
+	staticOpen: true,
+	setBGColor: false,
+	setText: false
+	});
+    	
+	
+	hueb.on( 'change', function( color, hue, sat, lum ) {
+	  $.ajax({
+            url: '/getColor/',
+			//Send in RGB
+            data: {"r": hexToRgb(color).r,
+			"g": hexToRgb(color).g,
+			"b": hexToRgb(color).b},
+
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+
+	$("#on_btn").click(function(){
+		$.ajax({
+            url: '/getColor/',
+			//Send in RGB
+            data: {"r": 255,
+			"g": 255,
+			"b": 255},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+	
+	$("#off_btn").click(function(){
+		$.ajax({
+            url: '/getColor/',
+			//Send in RGB
+            data: {"r": 0,
+			"g": 0,
+			"b": 0},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+	
+	$("#rainbow_cycle_successive_btn").click(function(){
+		$.ajax({
+            url: '/useFunction/',
+			//Send in RGB
+            data: {"function":"rainbow_cycle_successive"},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+	
+	$("#rainbow_cycle_btn").click(function(){
+		$.ajax({
+            url: '/useFunction/',
+			//Send in RGB
+            data: {"function":"rainbow_cycle"},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+	
+	$("#rainbow_colors_btn").click(function(){
+		$.ajax({
+            url: '/useFunction/',
+			//Send in RGB
+            data: {"function":"rainbow_colors"},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+	
+	$("#stop_btn").click(function(){
+		$.ajax({
+            url: '/useFunction/',
+			//Send in RGB
+            data: {"function":"STOP"},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+	
+	$("#visualization_btn_spectrum").click(function(){
+		val = $(this).attr("href");
+		val = val.replace('#', '')
+		$.ajax({
+            url: '/useFunction/',
+			//Send in RGB
+            data: {"function":"visualization", "visualization_effect": val},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+	$("#visualization_btn_energy").click(function(){
+		val = $(this).attr("href");
+		val = val.replace('#', '')
+		$.ajax({
+            url: '/useFunction/',
+			//Send in RGB
+            data: {"function":"visualization", "visualization_effect": val},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+	$("#visualization_btn_scroll").click(function(){
+		val = $(this).attr("href");
+		val = val.replace('#', '')
+		$.ajax({
+            url: '/useFunction/',
+			//Send in RGB
+            data: {"function":"visualization", "visualization_effect": val},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+	$("#inc_brightness_btn").click(function(){
+		$.ajax({
+            url: '/useFunction/',
+			//Send in RGB
+            data: {"function":"inc_brightness"},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+	
+	$("#dec_brightness_btn").click(function(){
+		$.ajax({
+            url: '/useFunction/',
+			//Send in RGB
+            data: {"function":"dec_brightness"},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+	});
+  });
+ </script>
+</head>
+<body>
+<div style="text-align:center;">
+
+	<div class="color-input"></div>
+	<div class="btn-group" role="group" aria-label="On off">
+		<button id="on_btn" class="btn btn-secondary">ON</button>
+		<button id="off_btn" class="btn btn-secondary">OFF</button>
+	</div>
+	<div class="btn-group" role="group" aria-label="inc dec">
+		<button id="inc_brightness_btn" class="btn btn-secondary">+</button>
+		<button id="dec_brightness_btn" class="btn btn-secondary">-</button>
+	</div>
+	<div class="btn-group" role="group" aria-label="Functions">
+		<button id="rainbow_cycle_successive_btn" class="btn btn-secondary">Rainbow Cycle Successive</button>
+		<button id="rainbow_cycle_btn" class="btn btn-secondary">Rainbow Cycle</button>
+		<button id="rainbow_colors_btn" class="btn btn-secondary">Rainbow Colors</button>
+		<div class="btn-group" role="group">
+		<button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Visualization
+		</button>
+			<div class="dropdown-menu" aria-labelledby="Visualization">
+				<a href="#visualize_spectrum" id="visualization_btn_spectrum" class="dropdown-item" value="visualize_spectrum">Spectrum</a>
+				<a href="#visualize_energy" id="visualization_btn_energy" class="dropdown-item" value="visualize_energy">Energy</a>
+				<a href="#visualize_scroll" id="visualization_btn_scroll" class="dropdown-item" value="visualize_scroll">Scroll</a>
+			</div>
+		</div>
+		
+	</div>
+	
+		<button id="stop_btn" class="btn btn-danger">STOP</button>
+	</div>
+</div>
+</body>
+</html>
