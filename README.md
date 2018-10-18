@@ -59,6 +59,7 @@ To
 defaults.ctl.card 1
 defaults.pcm.card 1
 ```
+Put the `led.py` file into `audio-reactive-led-strip/python/` replacing the old `led.py`
 
 Now Just run the following:
 
