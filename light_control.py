@@ -7,7 +7,7 @@ import Adafruit_GPIO.SPI as SPI
  
  
 # Configure the count of pixels:
-PIXEL_COUNT = 142
+PIXEL_COUNT = 1
  
 # Alternatively specify a hardware SPI connection on /dev/spidev0.0:
 SPI_PORT   = 0
@@ -51,35 +51,35 @@ def rainbow_colors(wait=0.05):
         pixels.show()
         if wait > 0:
             time.sleep(wait)
-			
+            
 def decreaseBrightness(step = 20):
-	for i in range(pixels.count()):
-		r, g, b = pixels.get_pixel_rgb(i)
-		r = int(r - step)
-		g = int(g - step)
-		b = int(b - step)
-		pixels.set_pixel(i, Adafruit_WS2801.RGB_to_color( r, g, b ))
-	print "R: {}, G: {}, B: {}".format(r,g,b)
-	pixels.show()
-	
+    for i in range(pixels.count()):
+        r, g, b = pixels.get_pixel_rgb(i)
+        r = int(r - step)
+        g = int(g - step)
+        b = int(b - step)
+        pixels.set_pixel(i, Adafruit_WS2801.RGB_to_color( r, g, b ))
+    print ("R: {}, G: {}, B: {}").format(r,g,b)
+    pixels.show()
+    
 def increaseBrightness(step = 20):
-	for i in range(pixels.count()):
-		r, g, b = pixels.get_pixel_rgb(i)        
-		r = int(r + step)
-		g = int(g + step)
-		b = int(b + step)
-		pixels.set_pixel(i, Adafruit_WS2801.RGB_to_color( r, g, b ))
-	print "R: {}, G: {}, B: {}".format(r,g,b)
-	pixels.show()
-	
+    for i in range(pixels.count()):
+        r, g, b = pixels.get_pixel_rgb(i)        
+        r = int(r + step)
+        g = int(g + step)
+        b = int(b + step)
+        pixels.set_pixel(i, Adafruit_WS2801.RGB_to_color( r, g, b ))
+    print ("R: {}, G: {}, B: {}").format(r,g,b)
+    pixels.show()
+    
 def setColor(RGB):
-	r = int(RGB[0])
-	g = int(RGB[1])
-	b = int(RGB[2])
-	for i in range(pixels.count()):
-		pixels.set_pixel(i, Adafruit_WS2801.RGB_to_color( r, g, b ))
-	pixels.show()  # Make sure to call show() after changing any pixels!
-	
+    r = int(RGB[0])
+    g = int(RGB[1])
+    b = int(RGB[2])
+    for i in range(pixels.count()):
+        pixels.set_pixel(i, Adafruit_WS2801.RGB_to_color( r, g, b ))
+    pixels.show()  # Make sure to call show() after changing any pixels!
+    
 def clear_pixels():
-	pixels.clear()
-	pixels.show()
+    pixels.clear()
+    pixels.show()
