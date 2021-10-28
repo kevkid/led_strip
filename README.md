@@ -59,12 +59,16 @@ To
 defaults.ctl.card 1
 defaults.pcm.card 1
 ```
-Put the `led.py` file into `audio-reactive-led-strip/python/` replacing the old `led.py`
+Clone this repo into the led_strip directory
+```
+git clone https://github.com/scottlawsonbc/audio-reactive-led-strip.git
+```
+Put the `led.py` and `config.py` files into `audio-reactive-led-strip/python/` replacing the old files.
 
 Now Just run the following:
 
 ```
-sudo python lights.py
+sudo python3 lights.py
 ```
 
 If you are getting bufferoverflow issues follow [this](https://github.com/scottlawsonbc/audio-reactive-led-strip/commit/fa492bbffc13cc59820ffff1bf8767daad969620)
